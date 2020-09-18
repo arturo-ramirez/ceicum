@@ -1,0 +1,79 @@
+{% extends 'base/base.html' %}
+
+{% load static %}
+
+{% block title %}
+Cursos
+{% endblock title %}
+
+{% block page_content %}
+<form method="POST" class="form-inline" novalidate>
+    {% csrf_token %}
+    <div class="col-xl-12 col-md-12 mb-12">
+        {% if obj %}
+        <div class="card border-left-warning shadow h-100 py-2">
+            {% else %}
+            <div class="card border-left-success shadow h-100 py-2">
+                {% endif %}
+                <div class="card-body">
+                    <div class="row no-gutters align-items-center">
+                        <div class="col mr-2">
+                            <div class="text-xs font-weight-bold text-primary mb-1">
+                                {% if obj %} Editar {% else %} Nuevo {% endif %} Curso
+                            </div>
+                            <div class="dropdown-divider"></div>
+                            <br>
+                            <div class="row">
+                                <div class="col-sm-12 col-md-4">
+                                    <div class="input-group">
+                                        <input type="text" name="nombre_curso" maxlength="100" class="form-control"
+                                            required id="id_nombre_curso" placeholder="Nombre del curso"
+                                            value="{% if obj %} {{ obj.nombre_curso }} {% endif %}">
+                                    </div>
+                                </div>
+                                <div class="col-sm-12 col-md-4">
+                                    <div class="input-group">
+                                        <!-- <input type="text" name="numero_g" maxlength="100" class="form-control"
+                                            required id="id_numero_g" placeholder="Generación"
+                                            value="{% if obj %} {{ obj.numero_g }} {% endif %}"> -->
+                                        {{ form.numero_g }}
+                                    </div>
+                                </div>
+                                <div class="col-sm-12 col-md-4">
+                                    <div class="form-group">
+                                        <label for="id_estado">Estado</label>
+                                        <input type="checkbox" name="estado" class="form-control" id="id_estado"
+                                            {% if obj.estado %} checked {% endif %}>
+                                    </div>
+                                </div>
+                            </div>
+                            <br>
+                            <div class="dropdown-divider"></div>
+                            <div class="row">
+                                <div class="col">
+                                    <button type="submit" class="btn btn-success"><span class="fa fa-save"></span>
+                                        Guardar</button>
+                                    <a href="{% url 'curso:curso_lista' %}" class="btn btn-danger"><span
+                                            class="fa fa-undo"></span> Cancelar</a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</form>
+<br>
+{% endblock page_content %}
+{% block footer %}
+<!-- Footer -->
+<footer class="sticky-footer bg-white">
+    <div class="container my-auto">
+        <div class="copyright text-center my-auto">
+            <span>Copyright &copy; ceicum 2020</span>
+        </div>
+    </div>
+</footer>
+<!-- End of Footer -->
+{% endblock footer %}

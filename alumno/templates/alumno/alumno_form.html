@@ -1,0 +1,233 @@
+{% extends 'base/base.html' %}
+
+{% load static %}
+
+{% load crispy_forms_tags %}
+
+{% block title %}
+Alumnos
+{% endblock title %}
+
+{% block page_content %}
+<form method="POST" class="form-inline" novalidate>
+    {% csrf_token %}
+    <div class="col-xl-12 col-md-12 mb-12">
+        {% if obj %}
+        <div class="card border-left-warning shadow h-100 py-2">
+            {% else %}
+            <div class="card border-left-success shadow h-100 py-2">
+                {% endif %}
+                <div class="card-body">
+                    <div class="row no-gutters align-items-center">
+                        <div class="col mr-2">
+                            <div class="text-xs font-weight-bold text-primary mb-1">
+                                {% if obj %} Editar {% else %} Nuevx {% endif %} Alumnx
+                            </div>
+                            <div class="dropdown-divider"></div>
+                            <div class="row">
+                                <div class="col-sm-12 col-md-6">
+                                    <div class="input-group">
+                                        <div class="input-group-prepend">
+                                            <span class="input-group-text" id="inputGroup-sizing-sm">Alumnx</span>
+                                        </div>
+                                        <input type="text" class="form-control" aria-label="Sizing example input"
+                                            aria-describedby="inputGroup-sizing-sm"
+                                            value="{% if obj %} {{ obj.alumnx }} {% endif %}">
+                                        <!-- <input type="text" name="alumnx" maxlength="100" class="form-control" required
+                                            id="id_alumnx" placeholder="Alumnx"
+                                            value="{% if obj %} {{ obj.alumnx }} {% endif %}"> -->
+                                        <!-- {{ form.alumnx }} -->
+                                    </div>
+                                </div>
+                                <div class="col-sm-12 col-md-6">
+                                    <div class="input-group">
+                                        <div class="input-group-prepend">
+                                            <span class="input-group-text" id="inputGroup-sizing-sm">Código de
+                                                inscripción</span>
+                                        </div>
+                                        <input type="text" class="form-control" aria-label="Sizing example input"
+                                            aria-describedby="inputGroup-sizing-sm"
+                                            value="{% if obj %} {{ obj.codigo }} {% endif %}">
+                                        <!-- <input type="text" name="codigo" maxlength="100" class="form-control" required
+                                            id="id_codigo" placeholder="Código de inscripción"
+                                            value="{% if obj %} {{ obj.codigo }} {% endif %}"> -->
+                                    </div>
+                                </div>
+                            </div>
+                            <br>
+                            <div class="row">
+                                <div class="col-sm-12 col-md-6">
+                                    <div class="input-group">
+                                        <div class="input-group-prepend">
+                                            <span class="input-group-text" id="inputGroup-sizing-sm">E-mail</span>
+                                        </div>
+                                        <input type="text" class="form-control" aria-label="Sizing example input"
+                                            aria-describedby="inputGroup-sizing-sm"
+                                            value="{% if obj %} {{ obj.email }} {% endif %}">
+                                        <!-- <input type="text" name="email" maxlength="100" class="form-control" required
+                                            id="id_email" placeholder="E-mail"
+                                            value="{% if obj %} {{ obj.email }} {% endif %}"> -->
+                                    </div>
+                                </div>
+                                <div class="col-sm-12 col-md-6">
+                                    <div class="input-group">
+                                        <div class="input-group-prepend">
+                                            <span class="input-group-text" id="inputGroup-sizing-sm">País</span>
+                                        </div>
+                                        <input type="text" class="form-control" aria-label="Sizing example input"
+                                            aria-describedby="inputGroup-sizing-sm"
+                                            value="{% if obj %} {{ obj.pais }} {% endif %}">
+                                        <!-- <input type="text" name="pais" maxlength="100" class="form-control" required
+                                            id="id_pais" placeholder="País"
+                                            value="{% if obj %} {{ obj.pais }} {% endif %}"> -->
+                                    </div>
+                                </div>
+                            </div>
+                            <br>
+                            <div class="row">
+                                <div class="col-sm-12 col-md-6">
+                                    <div class="input-group">
+                                        <div class="input-group-prepend">
+                                            <span class="input-group-text" id="inputGroup-sizing-sm">Curso</span>
+                                        </div>
+                                        <input type="text" class="form-control" aria-label="Sizing example input"
+                                            aria-describedby="inputGroup-sizing-sm"
+                                            value="{% if obj %} {{ obj.curso }} {% endif %}">
+                                        <!-- <input type="text" name="nombre_curso" maxlength="100" class="form-control"
+                                            required id="id_nombre_curso" placeholder="Nombre del curso"
+                                            value="{% if obj %} {{ obj.curso }} {% endif %}"> -->
+                                        <!-- {{ form.curso }} -->
+                                    </div>
+                                </div>
+                                <div class="col-sm-12 col-md-2">
+                                    <div class="input-group">
+                                        <div class="input-group-prepend">
+                                            <span class="input-group-text" id="inputGroup-sizing-sm">Generación</span>
+                                        </div>
+                                        <input type="text" class="form-control" aria-label="Sizing example input"
+                                            aria-describedby="inputGroup-sizing-sm"
+                                            value="{% if obj %} {{ obj.generacion }} {% endif %}">
+                                        <!-- <input type="text" name="nombre_curso" maxlength="100" class="form-control"
+                                            required id="id_nombre_curso" placeholder="Nombre del curso"
+                                            value="{% if obj %} {{ obj.curso }} {% endif %}"> -->
+                                        <!-- {{ form.generacion }} -->
+                                    </div>
+                                </div>
+                                <div class="col-sm-12 col-md-4">
+                                    <div class="input-group">
+                                        <div class="input-group-prepend">
+                                            <span class="input-group-text" id="inputGroup-sizing-sm">Clave
+                                                (videos)</span>
+                                        </div>
+                                        <input type="text" class="form-control" aria-label="Sizing example input"
+                                            aria-describedby="inputGroup-sizing-sm"
+                                            value="{% if obj %} {{ obj.clave }} {% endif %}">
+                                        <!-- <input type="text" name="nombre_curso" maxlength="100" class="form-control"
+                                            required id="id_nombre_curso" placeholder="Nombre del curso"
+                                            value="{% if obj %} {{ obj.curso }} {% endif %}"> -->
+                                        <!-- {{ form.generacion }} -->
+                                    </div>
+                                </div>
+                            </div>
+                            <br>
+                            <div class="row">
+                                <div class="col-sm-12">
+                                    <div class="input-group">
+                                        <div class="input-group-prepend">
+                                            <span class="input-group-text" id="inputGroup-sizing-sm">Bio</span>
+                                        </div>
+                                        <input type="text" class="form-control" aria-label="Sizing example input"
+                                            aria-describedby="inputGroup-sizing-sm"
+                                            value="{% if obj %} {{ obj.bio }} {% endif %}">
+                                        <!-- <input type="text" name="bio" maxlength="100" class="form-control" required
+                                            id="id_bio" placeholder="Bio"
+                                            value="{% if obj %} {{ obj.bio }} {% endif %}"> -->
+                                    </div>
+                                </div>
+                            </div>
+                            <br>
+                            <div class="dropdown-divider"></div>
+                            <div class="row">
+                                <div class="col">
+                                    <button type="submit" class="btn btn-success"><span class="fa fa-save"></span>
+                                        Guardar</button>
+                                    <a href="{% url 'alumno:alumno_lista' %}" class="btn btn-danger"><span
+                                            class="fa fa-undo"></span> Cancelar</a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</form>
+<br>
+<!-- Generar Clave Cursos -->
+<!-- <div class="col-xl-12 col-md-12 mb-12">
+    <div class="card border-left-warning shadow h-30 py-2">
+        <div class="row">
+            <div class="col-sm-12 col-md-3">
+                <a class="dropdown-item" href="#" data-toggle="modal" data-target="#codigoModal">
+                    <i class="fas fa-sign-out-alt fa-sm fa-fw mr-2 text-gray-400"></i>
+                    Generar clave de acceso a videos
+                </a>
+
+
+                <div class="modal fade" id="codigoModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+                    aria-hidden="true">
+                    <div class="modal-dialog" role="document">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <h5 class="modal-title" id="exampleModalLabel">Elige
+                                    condiciones:
+                                </h5>
+                                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                    <span aria-hidden="true">&times;</span>
+                                </button>
+                            </div>
+                            <div class="modal-body">
+                                <div class="container text-center">
+                                    <form action="{% url 'alumno:password' %}">
+                                        <select name="length">
+                                            <option value="8">8</option>
+                                            <option value="9">9</option>
+                                            <option value="10" selected="selected">10</option>
+                                        </select> Longitud
+                                        <br>
+                                        <input type="checkbox" name="uppercase"> Mayúsculas
+                                        <br>
+                                        <input type="checkbox" name="numbers"> Números
+                                        <br>
+                                        <input type="checkbox" name="special"> Caracteres
+                                        especiales
+                                        <br>
+                                        <input type="hidden" name="next" value="{{ request.path }}">
+                                        <input type="submit" value="Generar código" class="btn btn-primary"
+                                            target="_blank">
+                                    </form>
+                                </div>
+                            </div>
+                            <div class="modal-footer">
+                                <button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </div>
+</div> -->
+{% endblock page_content %}
+{% block footer %}
+<!-- Footer -->
+<footer class="sticky-footer bg-white">
+    <div class="container my-auto">
+        <div class="copyright text-center my-auto">
+            <span>Copyright &copy; ceicum 2020</span>
+        </div>
+    </div>
+</footer>
+<!-- End of Footer -->
+{% endblock footer %}
